@@ -15,7 +15,7 @@ $FORMAT := ${FORMATTER} ${FORMATTER_FLAGS}
 
 PKG_LIST := $(go list ${PKG}/... | grep -v /vendor/)
 COVERAGE_FILE := "${PKG}/coverage.out"
-VENDOR := ${PKG}/vendor/
+VENDOR := "${PKG}/vendor/"
 GO_FILES := $(find -O3 . -prune ${VENDOR} -name '*.go' | grep -v _test.go)
 TEST_FILES := $(find -O3 . -prune ${VENDOR} -name '*_test.go')
 
