@@ -13,11 +13,11 @@ FORMATTER := gofmt
 FORMATTER_FLAGS := -l -s -w
 $FORMAT := ${FORMATTER} ${FORMATTER_FLAGS}
 
-PKG_LIST := $(go list ${PKG}/... | grep -v /vendor/)
+PKG_LIST := $(shell go list ${PKG}/... | grep -v '/vendor/')
 COVERAGE_FILE := "${PKG}/coverage.out"
-VENDOR := "${PKG}/vendor/"
-GO_FILES := $(find -O3 . -prune ${VENDOR} -name '*.go' | grep -v _test.go)
-TEST_FILES := $(find -O3 . -prune ${VENDOR} -name '*_test.go')
+VENDOR := "./vendor"
+GO_FILES := $(shell find -O3 . -path ${VENDOR} -prune -o -name '*.go' -print | grep -v _test.go)
+TEST_FILES := $(shell find -O3 . -path ${VENDOR} -prune -o -name '*_test.go' -print)
 
 .PHONY: all lint lint-all format fmt format-all fmt-all test-short unit-short test unit race-short race msan-short msan coverage cover heatmap heat report-coverage report report-browser report-html dep deps build force-build force clean help
 
