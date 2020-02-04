@@ -5,6 +5,7 @@
 # Edit those lines to fit your project
 PROJECT_NAME := "project-name"
 PKG := "package-path/${PROJECT_NAME}"
+OUT := "${PROJECT_NAME}.out"
 
 LINTER := golint
 LINTER_FLAGS := -set_exit_status
@@ -71,7 +72,7 @@ dep deps:	# Get the dependencies
 	@go get -v -d ./...
 
 build: dep	# Build the binary file
-	@go build -i -v ${PKG}
+	@go build -i -v ${PKG} -o ${OUT}
 
 force-build force: dep	# Re-build the entire project
 	@go build -i -v -a ${PKG}
