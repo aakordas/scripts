@@ -72,7 +72,7 @@ dep deps:	# Get the dependencies
 	@go get -v -d ./...
 
 build: dep	# Build the binary file
-	@go build -i -v ${PKG} -o ${OUT}
+	@go build -o ${OUT} -i -v ${PKG}
 
 force-build force: dep	# Re-build the entire project
 	@go build -i -v -a ${PKG}
